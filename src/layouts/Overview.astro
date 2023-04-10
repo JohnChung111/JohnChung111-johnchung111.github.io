@@ -1,0 +1,75 @@
+---
+import { Footer } from "../components/Footer";
+import { Navbar } from "../components/Navbar";
+import { Section } from "../components/Section";
+import { AppConfig } from "../utils/AppConfig";
+import type { IFrontmatter } from "../utils/Formatter";
+import Layout from "./Layout.astro";
+import screen1 from "../assets/images/screen1.png";
+import { GradientText } from "../components/GradientText";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import MySwiper, { MobileSwiper, PCSwiper } from "../components/MySwiper.jsx";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { HeroSocial } from "../components/HeroSocial";
+
+export interface Props {
+  title: string;
+  description: string;
+  imgSrc: string[];
+}
+
+const { title, description, imgSrc } = Astro.props as Props;
+// const title = `${content.title} - ${AppConfig.site_name}`;bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent
+---
+
+<Layout head={{ title, description: description }}>
+  <Section>
+    <div class="flex flex-col align-middle text-center gap-16 mt-6">
+      <div
+        class="font-bold text-5xl bg-gradient-to-br from-orange-300 to-teal-300 bg-clip-text text-transparent"
+      >
+        {title}
+      </div>
+      <div class="text-base">
+        {description}
+      </div>
+      <!-- <PCSwiper client:media="(min-width: 888px)" imgSrc={imgSrc} /> -->
+      <PCSwiper client:load imgSrc={imgSrc} />
+      <slot />
+    </div>
+  </Section>
+  <Section>
+    <div class="flex flex-col gap-8">
+      <div class="font-bold text-3xl text-slate-300">FAQ</div>
+      <div class="font-medium text-xl text-slate-300">Q: Do I need to login?</div>
+      <div class=" font-normal text-lg text-slate-400">A: No, you don't need to login to chat, but you need to set your api key from openai</div>
+      <div class="font-medium text-xl text-slate-300">Q: Will you upload my api key?</div>
+      <div class="font-normal text-lg text-slate-400">A: No, we won't upload api key to our server, it just store at your phone locally</div>
+
+    </div>
+  </Section>
+
+  <Section>
+    <div class="flex flex-col gap-8">
+      <div class="font-bold text-3xl text-slate-300">Contact</div>
+      <div class="font-normal text-lg text-slate-400">If you have any further quetion, please contact us via twitter or email, 
+        also if you have any advice, please do not hesitate to send us message!</div>
+    </div>
+    <div class="flex flex-row gap-6 mt-3">
+      <a href="https://twitter.com/johnchung111" target='_blank'>
+        <HeroSocial
+          src="/assets/images/twitter-icon.png"
+          alt="Twitter icon"
+        />
+      </a>
+      <a href="mailto:duolingquan@gmail.com" target='_blank'>
+        <HeroSocial
+          src="/assets/images/email-icon.png"
+          alt="email icon"
+        />
+      </a>
+    </div>
+   
+  </Section>
+</Layout>

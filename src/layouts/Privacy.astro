@@ -1,0 +1,38 @@
+---
+import { Footer } from "../components/Footer";
+import { Navbar } from "../components/Navbar";
+import { Section } from "../components/Section";
+import { AppConfig } from "../utils/AppConfig";
+import type { IFrontmatter } from "../utils/Formatter";
+import Layout from "./Layout.astro";
+import screen1 from "../assets/images/screen1.png";
+import { GradientText } from "../components/GradientText";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import MySwiper, { MobileSwiper, PCSwiper } from "../components/MySwiper.jsx";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { HeroSocial } from "../components/HeroSocial";
+
+export interface Props {
+  content: IFrontmatter;
+}
+
+const { content } = Astro.props as Props;
+const title = `${content.title}`;
+---
+
+<Layout head={{ title, description: 'description' }}>
+  <Section>
+    <div class="flex flex-col align-middle text-center gap-6 mt-6">
+      <div
+        class="font-bold text-5xl bg-gradient-to-br from-orange-300 to-teal-300 bg-clip-text text-transparent"
+      >
+        {content.title}
+      </div>
+      <div class="text-base text-start prose prose-invert mt-8 prose-img:rounded-lg">
+        <slot/>
+      </div>
+    </div>
+  </Section>
+  
+</Layout>
