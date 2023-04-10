@@ -2,8 +2,6 @@ import { GradientText } from "./GradientText";
 import { HeroAvatar } from "./HeroAvatar";
 import { HeroSocial } from "./HeroSocial";
 import { Section } from "./Section";
-import avatar from "../assets/images/avatar.png";
-import twitter from "../assets/images/twitter-icon.png";
 
 
 const Hero = () => (
@@ -26,7 +24,7 @@ const Hero = () => (
             avatar={
                 <img
                     // className="h-80 w-64"
-                    src={avatar}
+                    src='/assets/images/avatar.png'
                     alt="Avatar image"
                     loading="lazy"
                 />
